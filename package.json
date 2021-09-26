@@ -46,6 +46,7 @@
     "repository": "Vico1993/cobi",
     "scripts": {
         "lint": "eslint . --ext .ts --config .eslintrc",
+        "build": "tsc -b",
         "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
         "test": "echo NO TESTS",
         "version": "oclif-dev readme && git add README.md"
