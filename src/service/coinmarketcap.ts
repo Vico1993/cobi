@@ -1,6 +1,6 @@
 // import { default as CoinMarketCapClient } from 'coinmarketcap-api'
-import { CoinMarketCapClient } from "../client/coinmarketcapclient";
-import { CoinMarketCapOptions } from "./types";
+import { CoinMarketCapClient } from '../client/coinmarketcapclient'
+import { CoinMarketCapOptions } from './types'
 
 export class CoinMarketCap {
     /**
@@ -8,21 +8,21 @@ export class CoinMarketCap {
      *
      * @type {CoinMarketCapClient}
      */
-    private client: CoinMarketCapClient;
+    private client: CoinMarketCapClient
 
     /**
      * Activate or deactivate debug mode
      *
      * @type {Boolean}
      */
-    private debug = false;
+    private debug = false
 
     /**
      * Devise to get data too
      *
      * @type {string}
      */
-    private currency = "CAD";
+    private currency = 'CAD'
 
     /**
      * Small cache system to not query CoinMarketCap everytime for the same asset
@@ -30,21 +30,21 @@ export class CoinMarketCap {
      * @type {Record<string, number>}
      * @todo: Improve ?
      */
-    private assetMemory: Record<string, number> = {};
+    private assetMemory: Record<string, number> = {}
 
     constructor(opts: CoinMarketCapOptions) {
         // this.client = new CoinMarketCapClient(opts.apiKey)
 
         this.client = new CoinMarketCapClient({
             apiKey: opts.apiKey,
-        });
+        })
 
         if (opts.debug) {
-            this.debug = opts.debug;
+            this.debug = opts.debug
         }
 
         if (opts.currency) {
-            this.currency = opts.currency;
+            this.currency = opts.currency
         }
     }
 
@@ -57,12 +57,12 @@ export class CoinMarketCap {
      */
     private mockAssetValue = (asset: string): number => {
         const mock = {
-            BTC: this.toNumber("59,011.65"),
-            ETH: this.toNumber("4,348.04"),
-        };
+            BTC: this.toNumber('59,011.65'),
+            ETH: this.toNumber('4,348.04'),
+        }
 
-        return mock[asset];
-    };
+        return mock[asset]
+    }
 
     /**
      * Helper method to transform a Number to string
@@ -71,8 +71,8 @@ export class CoinMarketCap {
      * @returns {number}
      */
     private toNumber = (str: string): number => {
-        return Number(str.replace(/[^0-9.-]+/g, ""));
-    };
+        return Number(str.replace(/[^0-9.-]+/g, ''))
+    }
 
     /**
      * Get current value of Asset
@@ -81,26 +81,27 @@ export class CoinMarketCap {
      * @returns {Promise<number | undefined>}
      */
     public getAssetValue = async (
-        asset: string
+        asset: string,
     ): Promise<number | undefined> => {
         if (this.debug) {
-            return this.mockAssetValue(asset);
+            return this.mockAssetValue(asset)
         }
 
-        if (typeof this.assetMemory[asset] === "undefined") {
+        if (typeof this.assetMemory[asset] === 'undefined') {
             try {
                 const response = await this.client.getAssetValue(
                     asset,
-                    this.currency
-                );
+                    this.currency,
+                )
 
                 this.assetMemory[asset] =
-                    response.data[asset].quote[this.currency].price;
+                    response.data[asset].quote[this.currency].price
             } catch (error) {
-                console.error("Coinmarketcap error: ", error);
+                // eslint-disable-next-line no-console
+                console.error('Coinmarketcap error: ', error)
             }
         }
 
-        return this.assetMemory[asset];
-    };
+        return this.assetMemory[asset]
+    }
 }

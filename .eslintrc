@@ -1,6 +1,10 @@
 {
-  "extends": [
-    "oclif",
-    "oclif-typescript"
-  ]
+    "root": true,
+    "plugins": ["prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ]
 }

@@ -1,51 +1,54 @@
 {
-  "name": "cobi",
-  "description": "Cobi is a CLI that help myself to track + analyse my cryto investment.",
-  "version": "0.0.1",
-  "author": "Victor Piolin",
-  "bin": {
-    "cobi": "./bin/run"
-  },
-  "bugs": "https://github.com/Vico1993/cobi/issues",
-  "dependencies": {
-    "@oclif/command": "^1.8.0",
-    "@oclif/config": "^1.17.0",
-    "@oclif/plugin-help": "^3.2.3",
-    "axios": "^0.21.4",
-    "dotenv": "^10.0.0",
-    "tslib": "^1.14.1"
-  },
-  "devDependencies": {
-    "@oclif/dev-cli": "^1.26.0",
-    "@types/node": "^10.17.60",
-    "eslint": "^5.16.0",
-    "eslint-config-oclif": "^3.1.0",
-    "eslint-config-oclif-typescript": "^0.1.0",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.10"
-  },
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "files": [
-    "/bin",
-    "/lib"
-  ],
-  "homepage": "https://github.com/Vico1993/cobi",
-  "keywords": [
-    "oclif"
-  ],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "oclif": {
-    "bin": "cobi"
-  },
-  "repository": "Vico1993/cobi",
-  "scripts": {
-    "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md"
-  },
-  "types": "lib/index.d.ts"
+    "name": "cobi",
+    "description": "Cobi is a CLI that help myself to track + analyse my cryto investment.",
+    "version": "0.0.1",
+    "author": "Victor Piolin",
+    "bin": {
+        "cobi": "./bin/run"
+    },
+    "bugs": "https://github.com/Vico1993/cobi/issues",
+    "dependencies": {
+        "@oclif/command": "^1.8.0",
+        "@oclif/config": "^1.17.0",
+        "@oclif/plugin-help": "^3.2.3",
+        "axios": "^0.21.4",
+        "dotenv": "^10.0.0",
+        "tslib": "^1.14.1"
+    },
+    "devDependencies": {
+        "@oclif/dev-cli": "^1.26.0",
+        "@types/node": "^10.17.60",
+        "eslint": "^5.16.0",
+        "eslint-config-oclif": "^3.1.0",
+        "eslint-config-oclif-typescript": "^0.1.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "prettier": "^2.4.1",
+        "ts-node": "^8.10.2",
+        "typescript": "^3.9.10"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib"
+    ],
+    "homepage": "https://github.com/Vico1993/cobi",
+    "keywords": [
+        "oclif"
+    ],
+    "license": "MIT",
+    "main": "lib/index.js",
+    "oclif": {
+        "bin": "cobi"
+    },
+    "repository": "Vico1993/cobi",
+    "scripts": {
+        "lint": "eslint . --ext .ts --config .eslintrc",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
+        "test": "echo NO TESTS",
+        "version": "oclif-dev readme && git add README.md"
+    },
+    "types": "lib/index.d.ts"
 }
