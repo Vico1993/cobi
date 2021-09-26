@@ -1,9 +1,9 @@
 import { CoinMarketCapOptions } from "./types";
 import { CoinMarketCap } from "./coinmarketcap";
-import dotenv from "dotenv";
+import { config } from "dotenv";
 
 // Check env var
-dotenv.config();
+config();
 
 /**
  * Will instantiate the CoinMarketCap api client with parameters
@@ -16,6 +16,6 @@ export const initCoinMarketCap = (
 ): CoinMarketCap => {
     return new CoinMarketCap({
         ...opts,
-        apiKey: process.env.COINMARKETCAP_API_KEY,
+        apiKey: process.env.COINMARKETCAP_API_KEY as string,
     });
 };
