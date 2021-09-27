@@ -1,28 +1,27 @@
 import { Command, flags } from '@oclif/command'
+import { cobiInitialisation } from './utils'
 
 class Cobi extends Command {
     static description = 'describe the command here'
 
     static flags = {
-        // add --version flag to show CLI version
-        version: flags.version({ char: 'v' }),
         help: flags.help({ char: 'h' }),
-        // flag with a value (-n, --name=VALUE)
-        name: flags.string({ char: 'n', description: 'name to print' }),
-        // flag with no value (-f, --force)
-        force: flags.boolean({ char: 'f' }),
+        add: flags.boolean({ char: 'a', description: 'add new transaction' }),
+        get: flags.boolean({
+            char: 'g',
+            description: 'retrieve all transactions',
+        }),
     }
 
     static args = [{ name: 'file' }]
 
     async run() {
+        // Initialisation of the CLI
+        cobiInitialisation()
+
         const { args, flags } = this.parse(Cobi)
 
-        const name = flags.name ?? 'world'
-        this.log(`hello ${name} from ./src/index.ts`)
-        if (args.file && flags.force) {
-            this.log(`you input --force and --file: ${args.file}`)
-        }
+        this.log(`hello world from ./src/index.ts`)
     }
 }
 

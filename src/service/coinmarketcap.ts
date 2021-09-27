@@ -61,7 +61,8 @@ export class CoinMarketCap {
             ETH: this.toNumber('4,348.04'),
         }
 
-        return mock[asset]
+        // return mock[asset]
+        return 10
     }
 
     /**
