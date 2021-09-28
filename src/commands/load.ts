@@ -15,19 +15,19 @@ export class Load extends Command {
         }),
     }
 
-    async run() {
+    async run(): Promise<void> {
         let data: CryptoDotComInput[] = []
         const { cryptoDotCom } = this.parse(Load).flags
 
         if (cryptoDotCom) {
-            let filepath = await question(
+            const filepath = await question(
                 'I need to have the CSV export from Crypto.com. Can you share with me the filepath? ( ex: ./cobi/super/path/dot.csv ): ',
             )
 
             if (!existsSync(resolve(filepath))) {
                 this.error(
                     new Error(
-                        `Sorry.. I couldn\'t find your file at: ${filepath}`,
+                        `Sorry.. I couldn't find your file at: ${filepath}`,
                     ),
                     {
                         exit: false,
@@ -40,7 +40,7 @@ export class Load extends Command {
             data = await readFromCSV<CryptoDotComInput>(resolve(filepath))
         }
 
-        console.log(data)
+        this.log('Data', data)
 
         // this.log(`hello world transaction command... Coming soon`)
     }

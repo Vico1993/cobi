@@ -11,7 +11,7 @@ export class Transaction extends Command {
         }),
     }
 
-    async run() {
+    async run(): Promise<void> {
         this.log(`Transaction command... Coming soon`)
     }
 }

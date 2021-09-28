@@ -1,6 +1,6 @@
 import { createInterface } from 'readline'
 
-let readline = createInterface({
+const readline = createInterface({
     input: process.stdin,
     output: process.stdout,
 })
@@ -17,13 +17,17 @@ export const question = async (q: string): Promise<string> => {
 
     let response = ''
     return new Promise((resolve, reject) => {
-        readline.on('line', (userInput) => {
-            response = userInput
-            readline.close()
-        })
+        try {
+            readline.on('line', (userInput) => {
+                response = userInput
+                readline.close()
+            })
 
-        readline.on('close', () => {
-            resolve(response)
-        })
+            readline.on('close', () => {
+                resolve(response)
+            })
+        } catch (error) {
+            reject(error)
+        }
     })
 }

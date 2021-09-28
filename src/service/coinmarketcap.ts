@@ -56,10 +56,10 @@ export class CoinMarketCap {
      * @todo: Remove ?
      */
     private mockAssetValue = (asset: string): number => {
-        const mock = {
-            BTC: this.toNumber('59,011.65'),
-            ETH: this.toNumber('4,348.04'),
-        }
+        // const mock = {
+        //     BTC: this.toNumber('59,011.65'),
+        //     ETH: this.toNumber('4,348.04'),
+        // }
 
         // return mock[asset]
         return 10

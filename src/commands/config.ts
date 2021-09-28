@@ -14,15 +14,13 @@ export class Config extends Command {
 
     static args = [{ name: 'file' }]
 
-    async run() {
+    async run(): Promise<void> {
         // Initialisation of config
         init()
 
         // const { args, flags } = this.parse(Config)
 
         const { currency } = this.parse(Config).flags
-
-        console.log(currency)
 
         this.log(`hello world from ./src/index.ts`)
     }
