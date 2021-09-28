@@ -5,9 +5,13 @@ export class Transaction extends Command {
 
     static flags = {
         help: flags.help({ char: 'h' }),
+        list: flags.boolean({
+            char: 'l',
+            description: 'List all transaction with results on them',
+        }),
     }
 
     async run() {
-        this.log(`hello world transaction command... Coming soon`)
+        this.log(`Transaction command... Coming soon`)
     }
 }
