@@ -1,5 +1,4 @@
-cobi
-====
+# cobi
 
 Cobi is a CLI that help myself to track + analyse my cryto investment.
 
@@ -9,11 +8,15 @@ Cobi is a CLI that help myself to track + analyse my cryto investment.
 [![License](https://img.shields.io/npm/l/cobi.svg)](https://github.com/Vico1993/cobi/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+-   [Usage](#usage)
+-   [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g cobi
 $ cobi COMMAND
@@ -25,8 +28,33 @@ USAGE
   $ cobi COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
 
+-   [`cobi load`](#cobi-load)
+
+## `oclif load`
+
+Cobi will load some transactions
+
+```
+USAGE
+  $ cobi load
+
+OPTIONS
+  --cryptoDotCom  Load transaction from crypto.com website. Will require export CSV.
+```
+
+_See code: [src/commands/load.ts](https://github.com/vico1993/cobi/src/commands/load.ts)_
+
 <!-- commandsstop -->
+
+TODO:
+
+-   Make proper README.md
+-   Deploy command to NPM with github action
+-   add proper unit test / integration test
