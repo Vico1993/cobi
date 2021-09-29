@@ -1,7 +1,7 @@
 import { input } from '.'
-import { transaction, earn, jsonTransaction } from '../transaction'
+import { Transaction, earn, jsonTransaction } from '../transaction'
 
-export class parser {
+export class Parser {
     /**
      * @var {earn}
      */
@@ -10,7 +10,7 @@ export class parser {
     /**
      * @var {transaction[]}
      */
-    private transactions: transaction[] = []
+    private transactions: Transaction[] = []
 
     /**
      * @param {input[]} data
@@ -25,7 +25,7 @@ export class parser {
      *
      * @param {input[]} data
      */
-    private parse = (data: input[]) => {
+    private parse = (data: input[]): void => {
         // Old to new
         for (const row of data.reverse()) {
             // Right now just deal with simple purchase
@@ -35,7 +35,7 @@ export class parser {
                 }
 
                 this.transactions.push(
-                    new transaction({
+                    new Transaction({
                         date: row['Timestamp (UTC)'],
                         quantity: row.Amount,
                         asset: row.Currency,

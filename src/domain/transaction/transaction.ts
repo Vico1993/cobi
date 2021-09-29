@@ -1,6 +1,6 @@
 import { transactionEntity } from '.'
 
-export class transaction implements transactionEntity {
+export class Transaction implements transactionEntity {
     public date: string
     public price: number
     public asset: string

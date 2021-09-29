@@ -4,11 +4,16 @@ import { existsSync } from 'fs'
 import { question, readFromCSV } from '../utils'
 import {
     input as CryptoComInput,
-    parser as CryptoComParser,
+    Parser as CryptoComParser,
 } from '../domain/cryptoCom'
-import { model } from '../domain/transaction'
+import { Model } from '../domain/transaction'
+import { initCoinMarketCap } from '../service'
 
-const transactionModel = new model()
+const transactionModel = new Model(
+    initCoinMarketCap({
+        debug: false,
+    }),
+)
 
 export class Load extends Command {
     static description = 'Load transaction from services'

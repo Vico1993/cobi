@@ -1,7 +1,7 @@
 export type earn = {
     [key: string]: {
         quantity: number
-        value?: number
+        value?: string
     }
 }
 
@@ -14,6 +14,26 @@ export type transactionEntity = {
     price: number
     asset: string
     assetPrice?: number
+}
+
+/**
+ *
+ */
+export type analyticsDetailOutput = {
+    [key: string]: analyticsOutput
+}
+
+export type analyticsOutput = {
+    totalInvest: number
+    currentPrice: number
+    diff: string
+    details?: analyticsDetailOutput
+}
+
+export type transactionOutput = transactionEntity & {
+    assetCurrentPrice: number
+    currentPrice: number
+    diff: string
 }
 
 /**
