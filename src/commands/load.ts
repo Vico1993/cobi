@@ -2,7 +2,13 @@ import { Command, flags } from '@oclif/command'
 import { resolve } from 'path'
 import { existsSync } from 'fs'
 import { question, readFromCSV } from '../utils'
-import { input as CryptoDotComInput } from '../domain/cryptoDotCom'
+import {
+    input as CryptoComInput,
+    parser as CryptoComParser,
+} from '../domain/cryptoCom'
+import { model } from '../domain/transaction'
+
+const transactionModel = new model()
 
 export class Load extends Command {
     static description = 'Load transaction from services'
@@ -16,32 +22,37 @@ export class Load extends Command {
     }
 
     async run(): Promise<void> {
-        let data: CryptoDotComInput[] = []
+        let data: CryptoComInput[] = []
         const { cryptoDotCom } = this.parse(Load).flags
 
-        if (cryptoDotCom) {
-            const filepath = await question(
-                'I need to have the CSV export from Crypto.com. Can you share with me the filepath? ( ex: ./cobi/super/path/dot.csv ): ',
+        if (!cryptoDotCom) {
+            this.log(
+                'Sorry for now I support only Crypto.com, please run again with --cryptoDotCom',
             )
-
-            if (!existsSync(resolve(filepath))) {
-                this.error(
-                    new Error(
-                        `Sorry.. I couldn't find your file at: ${filepath}`,
-                    ),
-                    {
-                        exit: false,
-                    },
-                )
-
-                return
-            }
-
-            data = await readFromCSV<CryptoDotComInput>(resolve(filepath))
         }
 
-        this.log('Data', data)
+        const filepath = await question(
+            'I need to have the CSV export from Crypto.com. Can you share with me the filepath? ( ex: ./cobi/super/path/dot.csv ): ',
+        )
 
-        // this.log(`hello world transaction command... Coming soon`)
+        if (!existsSync(resolve(filepath))) {
+            this.error(
+                new Error(`Sorry.. I couldn't find your file at: ${filepath}`),
+                {
+                    exit: false,
+                },
+            )
+
+            return
+        }
+
+        data = await readFromCSV<CryptoComInput>(resolve(filepath))
+
+        const cryptoParser = new CryptoComParser(data)
+
+        // Save informations parsed
+        transactionModel.saveToJson(cryptoParser.export())
+
+        this.log('transaction saved from crypto.com')
     }
 }
