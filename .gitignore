@@ -9,3 +9,5 @@ node_modules
 
 /cobi
 crypto.csv
+
+.env
