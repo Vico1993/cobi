@@ -1,6 +1,6 @@
-// import { default as CoinMarketCapClient } from 'coinmarketcap-api'
 import { CoinMarketCapClient } from '../client/coinmarketcapclient'
 import { CoinMarketCapOptions } from './types'
+import faker from 'faker'
 
 export class CoinMarketCap {
     /**
@@ -33,8 +33,6 @@ export class CoinMarketCap {
     private assetMemory: Record<string, number> = {}
 
     constructor(opts: CoinMarketCapOptions) {
-        // this.client = new CoinMarketCapClient(opts.apiKey)
-
         this.client = new CoinMarketCapClient({
             apiKey: opts.apiKey,
         })
@@ -49,43 +47,15 @@ export class CoinMarketCap {
     }
 
     /**
-     * Mock fake return value to not query CoinMarketCap for dump information
-     *
-     * @param {string} asset
-     * @returns {number}
-     * @todo: Remove ?
-     */
-    private mockAssetValue = (asset: string): number => {
-        // const mock = {
-        //     BTC: this.toNumber('59,011.65'),
-        //     ETH: this.toNumber('4,348.04'),
-        // }
-
-        // return mock[asset]
-        return 10
-    }
-
-    /**
-     * Helper method to transform a Number to string
-     *
-     * @param {string} str string to convert
-     * @returns {number}
-     */
-    private toNumber = (str: string): number => {
-        return Number(str.replace(/[^0-9.-]+/g, ''))
-    }
-
-    /**
      * Get current value of Asset
      *
      * @param {string} asset Asset code, like: BTC
      * @returns {Promise<number | undefined>}
+     * @todo: Log error somewhere
      */
-    public getAssetValue = async (
-        asset: string,
-    ): Promise<number | undefined> => {
+    public getAssetValue = async (asset: string): Promise<number | null> => {
         if (this.debug) {
-            return this.mockAssetValue(asset)
+            return faker.datatype.number(10000)
         }
 
         if (typeof this.assetMemory[asset] === 'undefined') {
@@ -103,6 +73,6 @@ export class CoinMarketCap {
             }
         }
 
-        return this.assetMemory[asset]
+        return this.assetMemory[asset] || null
     }
 }
