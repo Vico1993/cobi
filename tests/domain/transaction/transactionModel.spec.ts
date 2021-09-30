@@ -2,12 +2,12 @@
 import {
     Model as transactionModel,
     transactionOutput,
-} from '../../src/domain/transaction'
-import { transactionFactory } from './../factory'
-import { initCoinMarketCap } from './../../src/service'
+} from '../../../src/domain/transaction'
+import { transactionFactory } from './../../factory'
+import { initCoinMarketCap } from './../../../src/service'
 
 const getAssetValueMock = jest.fn()
-jest.mock('../../src/service/coinmarketcap.ts', () => ({
+jest.mock('../../../src/service/coinmarketcap.ts', () => ({
     CoinMarketCap: jest.fn().mockImplementation(() => {
         return {
             constructor: jest.fn(),

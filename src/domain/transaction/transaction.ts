@@ -14,7 +14,9 @@ export class Transaction implements transactionEntity {
         price,
         assetPrice,
     }: transactionEntity) {
-        this.date = new Date(date).toLocaleDateString('en-ca')
+        this.date = new Date(date).toLocaleDateString('en-ca', {
+            timeZone: 'UTC',
+        })
         this.price = price
         this.asset = asset
         this.quantity = quantity
