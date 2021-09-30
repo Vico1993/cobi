@@ -57,7 +57,6 @@ TODO:
 
 -   Make proper README.md
 -   Deploy command to NPM with github action
--   add proper unit test / integration test
 -   Work on the logic, from CSV to JSON
     -   Implement date filter to not parse everything OVER and OVER
     -   Tag transaction by service ?
