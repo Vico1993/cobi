@@ -1,16 +1,15 @@
-import { wallet } from "./../../../src/domain/wallet"
+import { Wallet } from "./../../../src/domain/wallet"
 import { assetEntity } from "./../../../src/domain/asset"
 
 const btcAsset: assetEntity = {
-    code: "BTC",
-    totalAmount: 10
+    code: "BTC"
 }
 
 const assets: assetEntity[] = [btcAsset];
 
 describe('Wallet@getAsset', () => {
     it('Asset found', () => {
-        const myWallet = new wallet({
+        const myWallet = new Wallet({
             assets: assets
         })
 
@@ -18,7 +17,7 @@ describe('Wallet@getAsset', () => {
     })
 
     it('Asset found even with lowerCase', () => {
-        const myWallet = new wallet({
+        const myWallet = new Wallet({
             assets: assets
         })
 
@@ -26,7 +25,7 @@ describe('Wallet@getAsset', () => {
     })
 
     it('Asset not found', () => {
-        const myWallet = new wallet({
+        const myWallet = new Wallet({
             assets: assets
         })
 

@@ -1,7 +1,7 @@
 import { walletEntity } from ".";
 import { assetEntity } from "../asset";
 
-export class wallet {
+export class Wallet {
     /**
      * @var {assetEntity[]}
      */

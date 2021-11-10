@@ -1,4 +1,18 @@
 export type assetEntity = {
     code: string
-    totalAmount: number
+    transactions?: transactionEntity[]
+}
+
+/**
+ * @todo: MOVE IT
+ * @todo: implement FROM
+ */
+export type transactionEntity = {
+    assetCode: string
+    date: string
+    quantity: number
+    price: number
+    from?: string
+    currency?: string
+    assetPrice?: number
 }
